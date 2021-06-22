@@ -1,0 +1,192 @@
+<!-- <button (click)="getYearly()">Yearly</button>
+<button (click)="ngOnInit()">Monthly</button>
+<select (change)="gradeFilter($event.target.value)">
+  <option *ngFor="let grades of grade" >{{grades.grade}}</option>
+</select>
+<span *ngIf="extraButton">
+  <button *ngFor="let extraButtonValues of extraButtonValue" (click)="extraButtonValuesClick($event.target.value)" value="{{extraButtonValues}}">{{extraButtonValues}}</button>
+</span>
+
+<table *ngIf="monthlySelected">
+  <tr *ngFor="let dataOfTables of dataOfTable">
+    <td>
+      {{dataOfTables.valid}}
+      <div>{{dataOfTables.refund}}</div>
+    </td>
+    <td>
+      {{dataOfTables.price}}
+      <div>{{dataOfTables.discount}}% OFF</div>
+    </td>
+    <td>
+      {{dataOfTables.per_class_price}}
+      <div>{{dataOfTables.total_sessions}} session</div>
+    </td>
+  </tr>
+</table>
+
+<table *ngIf="yearlySelected" border="1">
+  <tr>
+    <th>Total Session</th>
+    <th>Online Pre Assessments</th>
+    <th>Online Pre Assessments</th>
+    <th>Online Practice</th>
+    <th>Online Test</th>
+    <th>Career Counseling Session with Edu Coach</th>
+    <th>Sylabus</th>
+  </tr>
+  <tr *ngFor="let dataOfTables of dataOfTable">
+    <td>{{dataOfTables.total_sessions}}</td>
+    <td>{{dataOfTables.online_pre_assignments}}</td>
+    <td>{{dataOfTables.online_post_assignments}}</td>
+    <td>{{dataOfTables.online_assignments}}</td>
+    <td>{{dataOfTables.online_tests}}</td>
+    <td>{{dataOfTables.career_counselling_sessions}}</td>
+    <td>{{dataOfTables.syllabus}}</td>
+  </tr>
+</table> -->
+<div class="container-fluid margint">
+  <div class="container">
+    <div class="row">
+      <p class="marginZero">
+        <span class="topTag">Guaranteed Higher Score! Only with easyMath</span>
+      </p>
+    </div>
+  </div>
+  <div class="panel-group">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <button (click)="getYearly($event)" class="tab" >Yearly Courses</button>
+              <button (click)="getMonthly($event)"  class="tab selected">Monthly Courses</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-2">
+              <select (change)="gradeFilter($event.target.value)" class="form-control">
+                <option *ngFor="let grades of grade" >{{grades.grade}}</option>
+              </select>
+            </div>
+            <div class="col-lg-8">
+              <span *ngIf="extraButton">
+                <button class="tab"  *ngFor="let extraButtonValues of extraButtonValue,let i = index;" [ngClass]="{'selected': i === 0}" (click)="extraButtonValuesClick($event.target.value,$event)"  value="{{extraButtonValues}}">{{extraButtonValues}}</button>
+              </span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 margint">
+              <div class="panel-group" *ngIf="monthlySelected">
+                <div class="panel panel-default"   *ngFor="let dataOfTables of dataOfTable">
+                  <div class="panel-heading" >
+                    <div class="row">
+                      <div class="col-lg-1 radioSelect">
+                      <span><input type="radio" name="browser" value="IE"></span>
+                    </div>
+                      <div class="col-lg-4">
+                        
+                        <h4>{{dataOfTables.valid}}</h4>
+                        <span class="refund">{{dataOfTables.refund}}</span>
+                      </div>
+                      <div class="col-lg-4">
+                        <h4 class="cost">₹{{dataOfTables.price}}</h4>
+                        <span class="discount">{{dataOfTables.discount}}% OFF</span>
+                      </div>
+                      <div class="col-lg-3">
+                        <h4>₹{{dataOfTables.per_class_price}} per session</h4>
+                        <span class="refund">{{dataOfTables.total_sessions}} session</span>
+                      </div>
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          <div *ngIf="yearlySelected">
+            <div class="row">
+              <div class="col-lg-12">
+                
+                <table  class="table">
+                  <tr>
+                    <th>Total Session</th>
+                    <th>Online Pre Assessments</th>
+                    <th>Online Pre Assessments</th>
+                    <th>Online Practice</th>
+                    <th>Online Test</th>
+                    <th>Career Counseling Session with Edu Coach</th>
+                    <!-- <th>Sylabus</th> -->
+                  </tr>
+                  <tr *ngFor="let dataOfTables of dataOfTable">
+                    <td>{{dataOfTables.total_sessions}}</td>
+                    <td>{{dataOfTables.online_pre_assignments}}</td>
+                    <td>{{dataOfTables.online_post_assignments}}</td>
+                    <td>{{dataOfTables.online_assignments}}</td>
+                    <td>{{dataOfTables.online_tests}}</td>
+                    <td>{{dataOfTables.career_counselling_sessions}}</td>
+                    <!-- <td>{{dataOfTables.syllabus}}</td> -->
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="row margintb" *ngFor="let dataOfTables of dataOfTable">
+              
+              <div class="col-sm-12" *ngFor="let Sylabus of dataOfTables.syllabus">
+                <div *ngIf="typeOfSylabus=='string'" class="col-lg-8"><h5 class="title">Sylabus</h5>{{Sylabus}} </div>
+                <div class="col-lg-6" *ngIf="Sylabus.Introduction"><h5 class="title">Introduction</h5>{{Sylabus.Introduction}}</div>
+              
+                <div class="col-lg-6" *ngIf="Sylabus.POLYNOMIALS"><h5 class="title">POLYNOMIALS</h5><p>{{Sylabus.POLYNOMIALS}}</p></div>
+              
+                <div class="col-lg-6" *ngIf="Sylabus.Probability"><h5 class="title">Probability</h5>{{Sylabus.Probability}}</div>
+                <div class="col-lg-6" *ngIf="Sylabus.Integrals"><h5 class="title">Integrals</h5>{{Sylabus.Integrals}}</div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="container">
+            <div class="row" *ngIf="monthlySelected">
+              <div class="col-md-4">
+                <p>Monthly classes let you choose your own course topics</p>
+              </div>
+              <div class="col-md-1"></div>
+              <div class="col-md-2">
+                <p>Each session lasts 45 minutes</p>
+              </div>
+              <div class="col-md-5 alignRight">
+                <button class="bookNow">Book Now</button>
+              </div>
+            </div>
+            <div class="row" *ngIf="yearlySelected">
+              <div class="col-md-4">
+                <h4><p class="col-lg-10 topTag1"><span>Filling our soon</span></p>Vacant Seats <span class="cost">100 seats</span></h4>
+                <p class="small">Not a classroom,but 1:1 sessions.</p>
+              </div>
+              <div class="col-md-1"></div>
+              <div class="col-md-4">
+                
+                <h4><p class="col-lg-10 topTag2"><span>50% OFF</span></p>Subscription cost:<span class="cost">₹ 3999</span></h4>
+                <p class="small">This cost is inclusive of the tablet cost.</p>
+                <p class="small">Per session cost is ₹ 129.</p>
+              </div>
+              <div class="col-md-3 alignRight">
+                <button class="bookNow">Book Now</button>
+              </div>
+            </div>
+            <div class="row margint" >
+              <div class="col-md-9" >
+                <p *ngIf="yearlySelected">You can also avail a 8 inch and 10 inch tablet with your subscription</p>
+              </div>
+              <div class="col-md-3 alignRight">
+                <p class="terms">Guaranteed <a>terms & conditions</a> apply*</p>
+              </div>
+              
+            </div>
+        </div> 
+      </div>
+    </div>
+  </div>
+</div>
